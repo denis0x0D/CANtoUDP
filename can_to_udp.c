@@ -30,7 +30,14 @@ const char *can_interfaces[NUM_INTERFACES] = {"vcan0", "vcan1"};
 
 static void run_udp_to_can() {
   for (int num = 0; num < NUM_INTERFACES; ++num) {
-    if (fork()) {
+    int pid = fork();
+
+    if (pid == -1) {
+      perror("fork failed");
+      exit(0);
+    }
+
+    if (pid == 0) {
       // UDP machinery
       struct sockaddr_in serv_addr;
       int recvlen;
@@ -131,7 +138,14 @@ static void run_udp_to_can() {
 
 static void run_can_to_udp() {
   for (int num = 0; num < NUM_INTERFACES; ++num) {
-    if (fork()) {
+    int pid = fork();
+
+    if (pid == -1) {
+      perror("fork failed");
+      exit(0);
+    }
+
+    if (pid == 0) {
       // CAN machinery
       int s;
       int nbytes;

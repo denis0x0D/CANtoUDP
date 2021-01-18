@@ -8,5 +8,5 @@ By default it binds a vritual scan interaces to udp ports:
 "can0v" -> "localhost:11113"
 "can1v" -> "localhost:11114"
 
-How to run:
+How to build:
 $./make.sh
